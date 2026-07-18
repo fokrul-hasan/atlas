@@ -39,16 +39,16 @@ async function resolveTagIds(tagNames: string[]): Promise<string[]> {
 
   const ids: string[] = [];
   for (const name of cleaned) {
-    const slug = generateSlug(name);
     const { data: existing } = await supabase
       .from("tags")
       .select("id")
-      .eq("slug", slug)
+      .ilike("name", name)
       .maybeSingle();
 
     if (existing) {
       ids.push(existing.id);
     } else {
+      const slug = generateSlug(name);
       const { data: created, error } = await supabase
         .from("tags")
         .insert({ name, slug })
