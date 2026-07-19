@@ -30,3 +30,17 @@ export function generateSlug(title: string): string {
 function randomSuffix(): string {
   return Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4);
 }
+
+/**
+ * Safely decodes a URL path segment. Some hosts (Vercel) auto-decode
+ * dynamic route params before they reach the page; others (Netlify's
+ * Next.js runtime) pass them through still percent-encoded. Always
+ * decoding manually here makes lookups work the same on either host.
+ */
+export function safeDecode(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}

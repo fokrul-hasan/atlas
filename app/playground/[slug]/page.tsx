@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { safeDecode } from "@/lib/slug";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ShareButton from "@/components/ShareButton";
@@ -15,7 +16,8 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = safeDecode(rawSlug);
   const post = await getPostBySlug("playground", slug);
   if (!post) return {};
 
@@ -37,7 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PlaygroundPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = safeDecode(rawSlug);
   const post = await getPostBySlug("playground", slug);
   if (!post) notFound();
 

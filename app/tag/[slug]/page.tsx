@@ -1,5 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import { getPostsByTag } from "@/lib/posts";
+import { safeDecode } from "@/lib/slug";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -7,12 +8,13 @@ interface Props {
 
 export default async function TagPage({ params }: Props) {
   const { slug } = await params;
-  const { tagName, posts } = await getPostsByTag(slug);
+  const decodedSlug = safeDecode(slug);
+  const { tagName, posts } = await getPostsByTag(decodedSlug);
 
   return (
     <main className="wrap">
       <div className="section-head" style={{ borderTop: "none", marginTop: 0 }}>
-        <h2>Tagged: {tagName ?? slug}</h2>
+        <h2>Tagged: {tagName ?? decodedSlug}</h2>
       </div>
       {posts.length === 0 ? (
         <p style={{ color: "var(--fg-muted)" }}>No posts with this tag yet.</p>
