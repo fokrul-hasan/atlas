@@ -42,7 +42,8 @@ export default function TagInput({ value, onChange, existingTags }: Props) {
       e.preventDefault();
       addTag(input);
     } else if (e.key === "Backspace" && input === "" && value.length > 0) {
-      removeTag(value[value.length - 1]);
+      const lastTag = value[value.length - 1];
+      if (lastTag !== undefined) removeTag(lastTag);
     }
   }
 
