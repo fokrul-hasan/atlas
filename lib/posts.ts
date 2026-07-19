@@ -123,6 +123,7 @@ export async function getAllTagNames(): Promise<string[]> {
   if (error) throw error;
   return (data ?? []).map((row: any) => row.name);
 }
+export async function getTagsForCategory(category: Category): Promise<Tag[]> {
   const posts = await getPublishedPosts(category);
   const seen = new Map<string, Tag>();
   posts.forEach((p) => p.tags.forEach((t) => seen.set(t.slug, t)));
