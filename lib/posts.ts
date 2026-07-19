@@ -111,7 +111,18 @@ export async function getPublishedPosts(
   return posts;
 }
 
-export async function getTagsForCategory(category: Category): Promise<Tag[]> {
+export async function getAllTagNames(): Promise<string[]> {
+  if (usingSampleData()) {
+    const names = new Set<string>();
+    SAMPLE_POSTS.forEach((p) => p.tags.forEach((t) => names.add(t.name)));
+    return [...names].sort();
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("tags").select("name").order("name");
+  if (error) throw error;
+  return (data ?? []).map((row: any) => row.name);
+}
   const posts = await getPublishedPosts(category);
   const seen = new Map<string, Tag>();
   posts.forEach((p) => p.tags.forEach((t) => seen.set(t.slug, t)));

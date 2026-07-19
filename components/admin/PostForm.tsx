@@ -3,18 +3,19 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Editor from "./Editor";
+import TagInput from "./TagInput";
 import { savePost } from "@/lib/admin-actions";
 import { createClient } from "@/lib/supabase/client";
 import type { Post, Category, Language } from "@/types/post";
 
-export default function PostForm({ post }: { post?: Post }) {
+export default function PostForm({ post, existingTags }: { post?: Post; existingTags: string[] }) {
   const router = useRouter();
   const [title, setTitle] = useState(post?.title ?? "");
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
   const [content, setContent] = useState(post?.content ?? "");
   const [category, setCategory] = useState<Category>(post?.category ?? "thoughts");
   const [language, setLanguage] = useState<Language>(post?.language ?? "bn");
-  const [tags, setTags] = useState(post?.tags.map((t) => t.name).join(", ") ?? "");
+  const [tags, setTags] = useState<string[]>(post?.tags.map((t) => t.name) ?? []);
   const [coverImageUrl, setCoverImageUrl] = useState<string | null>(post?.cover_image_url ?? null);
   const [saving, setSaving] = useState(false);
 
@@ -50,7 +51,7 @@ export default function PostForm({ post }: { post?: Post }) {
         language,
         status,
         coverImageUrl,
-        tagNames: tags.split(",").map((t) => t.trim()).filter(Boolean),
+        tagNames: tags,
       });
       router.push("/admin");
       router.refresh();
@@ -98,14 +99,8 @@ export default function PostForm({ post }: { post?: Post }) {
       </label>
 
       <label style={labelStyle}>
-        Tags (comma separated)
-        <input
-          type="text"
-          placeholder="Psychology, Relationships"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
-          style={inputStyle}
-        />
+        Tags
+        <TagInput value={tags} onChange={setTags} existingTags={existingTags} />
       </label>
 
       <label style={labelStyle}>
