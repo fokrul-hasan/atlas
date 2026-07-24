@@ -277,3 +277,35 @@ footer.footer-band { background: #111110; padding: 70px 0 90px; }
 
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
 .reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Force consistent fonts inside post content, regardless of any inline
+   font-family/color styles that pasted-in text (from Google Docs, Word,
+   other sites) might carry with it. !important here deliberately beats
+   inline styles, per the CSS spec — this is the one safe place to use it. */
+.article-body:not(.bn) p,
+.article-body:not(.bn) li,
+.article-body:not(.bn) span,
+.article-body:not(.bn) div,
+.article-body:not(.bn) a {
+  font-family: var(--font-inter) !important;
+}
+
+.article-body.bn p,
+.article-body.bn li,
+.article-body.bn span,
+.article-body.bn div,
+.article-body.bn a {
+  font-family: var(--font-noto-bengali), var(--font-fraunces), serif !important;
+}
+
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4 {
+  font-family: var(--font-fraunces) !important;
+}
+
+.article-body * {
+  color: inherit !important;
+  background: none !important;
+}

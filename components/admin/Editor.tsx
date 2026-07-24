@@ -39,6 +39,12 @@ export default function Editor({ content, onChange }: Props) {
         class: "article-body",
         style: "min-height: 320px; outline: none;",
       },
+      transformPastedHTML(html) {
+        // Strip inline styles (font-family, color, etc.) from anything pasted
+        // in from Google Docs, Word, other sites — keeps only structural
+        // formatting (bold, headings, lists) so it matches the site's fonts.
+        return html.replace(/\sstyle="[^"]*"/gi, "").replace(/\sface="[^"]*"/gi, "");
+      },
     },
   });
 
