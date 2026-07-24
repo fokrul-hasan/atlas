@@ -287,7 +287,7 @@ footer.footer-band { background: #111110; padding: 70px 0 90px; }
 .article-body:not(.bn) span,
 .article-body:not(.bn) div,
 .article-body:not(.bn) a {
-  font-family: var(--font-inter) !important;
+  font-family: var(--font-fraunces), serif !important;
 }
 
 .article-body.bn p,
