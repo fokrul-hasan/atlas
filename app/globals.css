@@ -318,16 +318,16 @@ footer.footer-band { background: #111110; padding: 70px 0 90px; }
 .gradient-strike::after {
   content: "";
   position: absolute;
-  left: -4%;
-  right: -4%;
-  top: 48%;
-  height: 0.5em;
-  transform: translateY(-50%) rotate(-3deg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%234E2A85'/%3E%3Cstop offset='55%25' stop-color='%238A45C9'/%3E%3Cstop offset='100%25' stop-color='%23C97DDD'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M2,11 C10,7 16,14 24,10 C33,5 38,15 47,9 C56,4 62,14 71,10 C80,6 86,13 98,9' stroke='url(%23g)' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  left: -5%;
+  right: -5%;
+  top: 46%;
+  height: 0.55em;
+  transform: translateY(-50%) rotate(-2deg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%234E2A85'/%3E%3Cstop offset='55%25' stop-color='%238A45C9'/%3E%3Cstop offset='100%25' stop-color='%23C97DDD'/%3E%3C/linearGradient%3E%3Cfilter id='rough' x='-20%25' y='-50%25' width='140%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.35' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='3.5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23rough)' fill='url(%23g)' d='M3,10 C10,6.5 16,9 24,6.5 C33,4.5 40,8.5 49,6.5 C58,4.5 66,8.5 75,6.5 C83,5 90,7.5 97,9 C93,12.5 84,11.5 75,13.5 C66,15.5 58,11.5 49,13.5 C40,15.5 33,11.5 24,13.5 C16,15 10,12.5 3,10 Z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
 [data-theme="dark"] .gradient-strike::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='100' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%238A5FD6'/%3E%3Cstop offset='55%25' stop-color='%23B87FE6'/%3E%3Cstop offset='100%25' stop-color='%23E0A8EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M2,11 C10,7 16,14 24,10 C33,5 38,15 47,9 C56,4 62,14 71,10 C80,6 86,13 98,9' stroke='url(%23g2)' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='100' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%238A5FD6'/%3E%3Cstop offset='55%25' stop-color='%23B87FE6'/%3E%3Cstop offset='100%25' stop-color='%23E0A8EE'/%3E%3C/linearGradient%3E%3Cfilter id='rough2' x='-20%25' y='-50%25' width='140%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.35' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='3.5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23rough2)' fill='url(%23g2)' d='M3,10 C10,6.5 16,9 24,6.5 C33,4.5 40,8.5 49,6.5 C58,4.5 66,8.5 75,6.5 C83,5 90,7.5 97,9 C93,12.5 84,11.5 75,13.5 C66,15.5 58,11.5 49,13.5 C40,15.5 33,11.5 24,13.5 C16,15 10,12.5 3,10 Z'/%3E%3C/svg%3E");
 }
