@@ -17,7 +17,7 @@ export default async function HomePage() {
         <section className="hero" id="hero" style={{ borderTop: "none", paddingTop: 80 }}>
           <h1>
             Notes from a<br />
-            quiet <span className="gradient-text">mind</span>.
+            quiet <span className="gradient-strike">mind</span> <span className="gradient-text">soul</span>.
           </h1>
           <div className="subtitle">Curious · Reader · Thinker</div>
           <p className="bio">

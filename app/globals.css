@@ -309,3 +309,20 @@ footer.footer-band { background: #111110; padding: 70px 0 90px; }
   color: inherit !important;
   background: none !important;
 }
+
+
+.gradient-strike {
+  position: relative;
+  display: inline-block;
+}
+.gradient-strike::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 3px;
+  background: var(--accent-gradient);
+  transform: translateY(-50%);
+  border-radius: 2px;
+}
