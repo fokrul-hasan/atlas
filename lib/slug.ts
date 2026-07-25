@@ -1,30 +1,14 @@
 /**
- * Generates a URL-safe slug.
+ * Generates a URL-safe slug for a post.
  *
- * For Latin-script (English) titles, produces a readable slug like
- * "ten-little-scribes". For titles containing non-Latin scripts (like
- * Bangla), embedding the original characters in the URL turned out to be
- * fragile — subtle Unicode normalization differences between the browser,
- * keyboard input method, and Postgres could make an identical-looking slug
- * fail to match on lookup. So instead, non-Latin titles get a short,
- * guaranteed-safe random slug — no encoding ambiguity possible.
+ * Always returns a short random slug (e.g. "post-a1b2c3") rather than a
+ * readable, title-based one — this was a deliberate choice (not just the
+ * earlier Bangla-encoding fix): it keeps URLs short and consistent across
+ * languages, and avoids ever needing to think about slug uniqueness,
+ * special characters, or title changes breaking links later.
  */
-export function generateSlug(title: string): string {
-  const normalized = title.normalize("NFC").trim();
-  const isAsciiOnly = /^[\x00-\x7F]*$/.test(normalized);
-
-  if (!isAsciiOnly) {
-    return `post-${randomSuffix()}`;
-  }
-
-  const slug = normalized
-    .toLowerCase()
-    .replace(/['"]/g, "")
-    .replace(/[^\p{L}\p{N}]+/gu, "-")
-    .replace(/^-+|-+$/g, "")
-    .replace(/-{2,}/g, "-");
-
-  return slug || `post-${randomSuffix()}`;
+export function generateSlug(_title: string): string {
+  return `post-${randomSuffix()}`;
 }
 
 function randomSuffix(): string {
