@@ -5,6 +5,7 @@ import StarterKit from "@tiptap/starter-kit";
 import ImageExt from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import { marked } from "marked";
 import { createClient } from "@/lib/supabase/client";
 import {
   Bold as BoldIcon,
@@ -21,6 +22,11 @@ import {
 interface Props {
   content: string;
   onChange: (html: string) => void;
+}
+
+/** Heuristic check: does this pasted text look like it's written in Markdown? */
+function looksLikeMarkdown(text: string): boolean {
+  return /(^|\n)#{1,6}\s|\*\*[^*]+\*\*|(^|\n)[-*+]\s|(^|\n)\d+\.\s|(^|\n)>\s|`[^`]+`/.test(text);
 }
 
 export default function Editor({ content, onChange }: Props) {
@@ -44,6 +50,27 @@ export default function Editor({ content, onChange }: Props) {
         // in from Google Docs, Word, other sites — keeps only structural
         // formatting (bold, headings, lists) so it matches the site's fonts.
         return html.replace(/\sstyle="[^"]*"/gi, "").replace(/\sface="[^"]*"/gi, "");
+      },
+      handlePaste(_view, event) {
+        const clipboardData = event.clipboardData;
+        if (!clipboardData) return false;
+
+        const html = clipboardData.getData("text/html");
+        const text = clipboardData.getData("text/plain");
+
+        // If the clipboard already has real rich HTML (copied from a webpage,
+        // Word, Google Docs, etc.), let the normal paste handling above deal
+        // with it. Only step in when it's plain text that looks like raw
+        // Markdown — e.g. pasted from Obsidian, a .md file, or an AI chat.
+        const hasRichHtml = html && /<(b|strong|i|em|h[1-6]|ul|ol|li|blockquote|a|img)\b/i.test(html);
+
+        if (!hasRichHtml && text && looksLikeMarkdown(text)) {
+          event.preventDefault();
+          const parsedHtml = marked.parse(text, { async: false }) as string;
+          editor?.chain().focus().insertContent(parsedHtml).run();
+          return true;
+        }
+        return false;
       },
     },
   });
