@@ -3,7 +3,10 @@ export default function Footer() {
     <footer className="footer-band">
       <div className="wrap">
         <div className="footer-row">
-          <div className="brand">Fokrul Hasan</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+     
+            <div className="brand">Fokrul Hasan (Hridoy)</div>
+          </div>
           <div className="footer-links">
             <a href="mailto:fokrul.hh@gmail.com">Email</a>
             <a href="https://www.facebook.com/HridoyHsn" target="_blank" rel="noopener noreferrer">

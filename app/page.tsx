@@ -3,11 +3,13 @@ import Spine from "@/components/Spine";
 import ScrollReveal from "@/components/ScrollReveal";
 import BlogCard from "@/components/BlogCard";
 import PlaygroundTile from "@/components/PlaygroundTile";
+import RecipeTile from "@/components/RecipeTile";
 import { getPublishedPosts } from "@/lib/posts";
 
 export default async function HomePage() {
   const thoughtsPosts = (await getPublishedPosts("thoughts")).slice(0, 3);
   const playgroundPosts = (await getPublishedPosts("playground")).slice(0, 3);
+  const recipesPosts = (await getPublishedPosts("recipes")).slice(0, 3);
 
   return (
     <>
@@ -28,6 +30,7 @@ export default async function HomePage() {
           <div className="ctas">
             <a className="cta-link" href="#thoughts">Thoughts →</a>
             <a className="cta-link" href="#playground">Playground →</a>
+            <a className="cta-link" href="#recipes">Recipes →</a>
           </div>
         </section>
 
@@ -57,6 +60,24 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section id="recipes">
+          <div className="section-head reveal">
+            <h2>Recipes</h2>
+            <Link className="see-all" href="/recipes">All recipes →</Link>
+          </div>
+          {recipesPosts.length === 0 ? (
+            <p style={{ color: "var(--fg-muted)" }}>Nothing here yet.</p>
+          ) : (
+            <div className="playground-grid">
+              {recipesPosts.map((post) => (
+                <div className="reveal" key={post.id}>
+                  <RecipeTile post={post} />
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       </main>
     </>

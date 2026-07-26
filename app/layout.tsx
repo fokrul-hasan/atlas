@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, Noto_Serif_Bengali, Shadows_Into_Light } from "next/font/google";
+import { Fraunces, Inter, Noto_Serif_Bengali, Covered_By_Your_Grace, Literata } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -22,7 +22,14 @@ const notoBengali = Noto_Serif_Bengali({
   weight: ["400", "500", "600"],
 });
 
-const handwriting = Shadows_Into_Light({
+const literata = Literata({
+  subsets: ["latin"],
+  variable: "--font-literata",
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+});
+
+const handwriting = Covered_By_Your_Grace({
   subsets: ["latin"],
   variable: "--font-caveat",
   weight: ["400"],
@@ -48,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${notoBengali.variable} ${handwriting.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${notoBengali.variable} ${handwriting.variable} ${literata.variable}`}
     >
       <body data-theme="dark" suppressHydrationWarning>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

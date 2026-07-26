@@ -6,6 +6,7 @@ const SECTIONS = [
   { id: "hero", label: "I" },
   { id: "thoughts", label: "II" },
   { id: "playground", label: "III" },
+  { id: "recipes", label: "IV" },
 ];
 
 export default function Spine() {

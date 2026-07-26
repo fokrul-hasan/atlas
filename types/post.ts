@@ -1,4 +1,4 @@
-export type Category = "thoughts" | "playground";
+export type Category = "thoughts" | "playground" | "recipes";
 export type Language = "bn" | "en";
 export type Status = "draft" | "published";
 

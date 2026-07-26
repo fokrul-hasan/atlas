@@ -77,6 +77,7 @@ export default function PostForm({ post, existingTags }: { post?: Post; existing
           <select value={category} onChange={(e) => setCategory(e.target.value as Category)} style={inputStyle}>
             <option value="thoughts">Thoughts</option>
             <option value="playground">Playground</option>
+            <option value="recipes">Recipes</option>
           </select>
         </label>
         <label style={labelStyle}>
